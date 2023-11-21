@@ -71,7 +71,7 @@ class GaussianDiffusion(nn.Module):
         return loss
 
     def forward(self, x, y=None):
-        bsz, ch, h, w = x.shape
+        bsz, _, _, _ = x.shape
         device = x.device
         timesteps = torch.randint(0, self.num_steps, (bsz,), device=device)
         loss = self.get_losses(x, timesteps, y)
